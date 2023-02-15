@@ -24,16 +24,14 @@ public enum Salary {
 
     BigDecimal calcSalary(LocalDate dateEmisson) {
         final LocalDate dateSystem = LocalDate.of(2023, 2, 7);
+
         BigDecimal salary = new BigDecimal(1558);
 
         final long years = ChronoUnit.YEARS.between(dateEmisson,dateSystem);
 
         for (int i = 0; i < years; i++) {
-            double bonus = 500D;
-            double increase = (salary.doubleValue() * 18) / 100;
-
-            salary = salary.add(BigDecimal.valueOf(increase))
-                    .add(BigDecimal.valueOf(bonus));
+            double increase = (salary.doubleValue() * 0.18) + 500;
+            salary = salary.add(BigDecimal.valueOf(increase));
         }
 
         return salary.setScale(2, RoundingMode.UP);

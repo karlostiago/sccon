@@ -17,7 +17,6 @@ import java.util.List;
 public class PersonController {
 
     private final PersonService personService;
-
     private final PersonAssembler assembler;
 
     public PersonController(PersonService personService, PersonAssembler assembler) {
