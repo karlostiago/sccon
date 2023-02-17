@@ -2,9 +2,7 @@ package com.sscon.service;
 
 import com.sscon.entity.PersonEntity;
 import com.sscon.entity.input.PersonInput;
-import com.sscon.exception.AttributeImmutableException;
-import com.sscon.exception.EntityExistException;
-import com.sscon.exception.EntityNotFoundException;
+import com.sscon.exception.*;
 import com.sscon.repository.PersonRepository;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +25,14 @@ public class PersonService {
 
         if (personRepository.isExist(entity.getId())) {
             throw new EntityExistException();
+        }
+
+        if (entity.getDateBirth() == null) {
+            throw new DateBirthNullException();
+        }
+
+        if (entity.getDateEmisson() == null) {
+            throw new DateEmissionNullException();
         }
 
         return personRepository.add(entity);
